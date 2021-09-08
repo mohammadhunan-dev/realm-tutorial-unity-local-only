@@ -13,13 +13,13 @@ public class Stat : RealmObject
     public DateTimeOffset Time { get; private set; } = DateTimeOffset.Now;
 
     [MapTo("score")]
-    public int Score { get; set; }
+    public int Score { get; set; } = 0;
 
     [MapTo("enemiesDefeated")]
-    public int EnemiesDefeated { get; set; }
+    public int EnemiesDefeated { get; set; } = 0;
 
     [MapTo("tokensCollected")]
-    public int TokensCollected { get; set; }
+    public int TokensCollected { get; set; } = 0;
 
     [MapTo("statOwner")]
     public Player StatOwner { get; set; }

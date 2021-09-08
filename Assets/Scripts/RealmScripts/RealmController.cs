@@ -34,15 +34,14 @@ public class RealmController : MonoBehaviour
     public static void setLoggedInUser(string loggedInUser)
     {
         realm = GetRealm();
-        currentPlayer = realm.All<Player>().Where(p => p.Name == loggedInUser).First();
+        var matchedPlayers = realm.All<Player>().Where(p => p.Name == loggedInUser);
 
-        if (currentPlayer != null)
+        if (matchedPlayers.Count() > 0) // if the player exists
         {
+            currentPlayer = matchedPlayers.First();
+
             var s1 = new Stat();
             s1.StatOwner = currentPlayer;
-            s1.Score = 0;
-            s1.EnemiesDefeated = 0;
-            s1.TokensCollected = 0;
 
             realm.Write(() =>
             {
@@ -58,9 +57,6 @@ public class RealmController : MonoBehaviour
 
             var s1 = new Stat();
             s1.StatOwner = p1;
-            s1.Score = 0;
-            s1.EnemiesDefeated = 0;
-            s1.TokensCollected = 0;
 
             realm.Write(() =>
             {
@@ -112,9 +108,6 @@ public class RealmController : MonoBehaviour
             // create a new score for the game
             var s1 = new Stat();
             s1.StatOwner = currentPlayer;
-            s1.Score = 0;
-            s1.EnemiesDefeated = 0;
-            s1.TokensCollected = 0;
 
             realm.Write(() =>
             {
