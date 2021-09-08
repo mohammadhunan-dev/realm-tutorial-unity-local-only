@@ -61,9 +61,6 @@ public class LeaderboardManager : MonoBehaviour
     {
         var realmPlayer = realm.All<Player>().Where(p => p.Name == username).First();
         var realmPlayerTopStat = realmPlayer.Stats.OrderByDescending(s => s.Score).First().Score;
-        //Debug.Log("r player exists - " + realmPlayer.Name);
-
-        //Debug.Log("r player top score - en defeated " + realmPlayer.Stats.ElementAt(0).EnemiesDefeated);
         return realmPlayer.Stats.OrderByDescending(s => s.Score).First().Score;
     }
 
